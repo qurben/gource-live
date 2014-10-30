@@ -31,3 +31,6 @@ node_modules
 
 # IntelliJ IDEA project files
 .idea
+
+# Downloaded repository
+.repo
