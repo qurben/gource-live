@@ -5,7 +5,7 @@ import time
 from urllib.request import Request, urlopen
 
 def main():
-    print('sending data to gource-live')
+    #print('sending data to gource-live')
     username = check_output(['git', 'config', '--get', 'user.name']).decode().replace('\n', '')
     commithash = check_output(['git', 'log', '--format=format:%H', '-2']).decode().splitlines()
     changes = check_output(['git', 'diff', '--name-status', commithash[0], commithash[1]]).decode()
@@ -21,7 +21,7 @@ def main():
     req.add_header('X-Git-Event', 'commit')
 
     resp = urlopen(req)
-    print(resp.read().decode())
+    #print(resp.read().decode())
     
 if __name__=="__main__":
     main()
