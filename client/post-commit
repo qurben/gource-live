@@ -1,2 +1,3 @@
 #!/bin/sh
+echo Notifying server
 python .git/hooks/notify.py &
