@@ -1,7 +1,7 @@
 gource-live
 ===========
 
-This program will launch gource, and every time a commit is pushed it updates.
+This program will launch gource, and every time a commit is created it updates.
 
 Setup
 -----
