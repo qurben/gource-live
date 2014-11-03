@@ -1,12 +1,33 @@
 exec = require('child_process').exec
+spawn = require('child_process').spawn
 
+gource_child = null
 
 gource = (repo) ->
-  exec 'gource', (error, stdout, stderr) ->
-    console.log('stdout: ' + stdout)
-    console.log('stderr: ' + stderr)
+  gource_child = spawn '.\\gource-0.42.win32\\cmd\\gource.cmd',
+    [
+      '--log-format', 'custom',
+      '--file-idle-time', '0',
+      '--max-file-lag', '0.1',
+      '-'
+    ]
 
-    if error isnt null
-      console.log 'exec error ' + error
+  exec 'git --git-dir .repo/.git ls-files', (error, stdout, stderr) ->
+    for line in stdout.split('\n')
+      console.log line
+      gource_child.stdin.write("#{new Date().getTime()+1000}||A|#{line}\n")
+
+  gource_child.stdout.on 'data', (data) ->
+    console.log data.toString()
+
+  gource_child.stderr.on 'data', (data) ->
+    console.log "error: #{data}"
+
+  gource_child.on 'close', (code) ->
+    console.log "closing code: #{code}"
+
+
+gource.update = (message) ->
+  gource_child.stdin.write("#{message}")
 
 module.exports = gource
