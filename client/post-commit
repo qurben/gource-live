@@ -1,2 +1,2 @@
 #!/bin/sh
-python notify.py
+python .git/hooks/notify.py
