@@ -1,5 +1,5 @@
 gift = require 'gift'
-config = require './config'
+config = require '../config'
 fs = require 'fs'
 
 loaded = false
@@ -10,6 +10,8 @@ git = () ->
   unless fs.existsSync('#{config.repo_dir}/.git')
     gift.clone config.repo, config.repo_dir, (err, _repo) ->
       loaded = true unless err
+  else
+    @update
 
 git.update = (cb) ->
   if loaded

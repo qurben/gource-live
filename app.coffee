@@ -1,6 +1,6 @@
 http = require 'http'
-git = require './git'
-gource = require './gource'
+git = require './controller/git'
+gource = require './controller/gource'
 
 do git
 do gource
