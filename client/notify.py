@@ -7,7 +7,7 @@ from urllib.request import Request, urlopen
 def main():
     username = check_output(['git', 'config', '--get', 'user.name']).decode().replace('\n', '')
     commithash = check_output(['git', 'log', '--format=format:%H', '-2']).decode().splitlines()
-    changes = check_output(['git', 'diff', '--name-status', commithash[0], commithash[1]]).decode()
+    changes = check_output(['git', 'diff', '--name-status', commithash[1], commithash[0]]).decode()
     changeslist = changes.splitlines()
 
     out = ''
