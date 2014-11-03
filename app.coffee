@@ -8,8 +8,14 @@ do gource
 now = new Date().getTime()
 
 app = http.createServer (request, response) ->
-  response.writeHead 200, {"Content-Type": "text/plain"}
-  response.end()
+  request.on 'data', (data) ->
+    console.log data.toString()
+    gource.update(data.toString())
+
+  request.on 'end', ->
+    response.writeHead 200, {'Content-Type': 'text/plain'}
+    response.write 'OK'
+    response.end()
 
   if event = request.headers['x-git-event']? or event = request.headers['x-github-event']?
     if event is 'push'
