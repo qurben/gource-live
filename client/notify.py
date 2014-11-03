@@ -5,7 +5,8 @@ import time
 from urllib.request import Request, urlopen
 
 def main():
-    os.chdir('../..')
+    print('sending data to gource-live')
+    #os.chdir('../..')
     username = check_output(['git', 'config', '--get', 'user.name']).decode().replace('\n', '')
     commithash = check_output(['git', 'log', '--format=format:%H', '-1']).decode()
     changes = check_output(['git', 'diff', '--name-status', commithash]).decode()
