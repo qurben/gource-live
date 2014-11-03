@@ -11,10 +11,9 @@ git = () ->
     gift.clone config.repo, config.repo_dir, (err, _repo) ->
       loaded = true unless err
 
-git.update = () ->
+git.update = (cb) ->
   if loaded
-   return gift config.repo_dir
-
-  return false
+   repo = gift config.repo_dir
+   repo.sync cb
 
 module.exports = git
