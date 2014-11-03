@@ -1,14 +1,12 @@
 gource-live
 ===========
 
-This program will launch gource, and everytime a commit is pushed it updates.
+This program will launch gource, and every time a commit is pushed it updates.
 
 Setup
 -----
-### github
-Add the gource-live url to your github repo
+Run `coffee app.coffee` on the gource-live presentation machine.
 
-### self-hosted
-Add `curl -X POST --header "X-Git-Event: push" <live-gource-url> &` to hooks/post-receive on the server
+Each developer must add the `client/post-commit` and `client/notify.py` to the `.git/hooks` folder of their repository and change the `destination` value in `notify.py`.
 
-or for a Windows server add `Invoke-RestMethod -Method POST -Headers @{'X-Git-Event'='push'} <live-gource-url>` to hooks/post-receive on the server
+Now, each time a developer commits a change it is send to the presentation machine.
