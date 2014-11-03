@@ -4,7 +4,7 @@ spawn = require('child_process').spawn
 gource_child = null
 
 gource = (repo) ->
-  gource_child = spawn '.\\gource-0.42.win32\\cmd\\gource.cmd',
+  gource_child = spawn 'gource.cmd',
     [
       '--log-format', 'custom',
       '--file-idle-time', '0',
